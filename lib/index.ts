@@ -1,0 +1,1 @@
+export { determinant } from "./determinant";

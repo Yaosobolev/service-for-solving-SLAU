@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 export const MatrixInput = ({
   matrixA,
   matrixB,
@@ -15,38 +11,23 @@ export const MatrixInput = ({
   onMatrixAChange: (matrix: number[][]) => void;
   onMatrixBChange: (matrix: number[]) => void;
 }) => {
-  const [matrixAInner, setMatrixAInner] = useState<number[][]>([...matrixA]);
-  const [matrixBInner, setMatrixBInner] = useState<number[]>([...matrixB]);
-  // const [matrixB, setMatrixB] = useState<number[]>(Array(size).fill(0));
-  // const [matrixA, setMatrixA] = useState<number[][]>(
-  //   Array(size).fill(Array(size).fill(0))
-  // );
-  // const [matrixB, setMatrixB] = useState<number[]>(Array(size).fill(0));
-
   const handleMatrixAChange = (row: number, col: number, value: string) => {
     const newMatrix = matrixA.map((rowArray, i) =>
       rowArray.map((cell, j) =>
         i === row && j === col ? parseFloat(value) || 0 : cell
       )
     );
-    setMatrixAInner(newMatrix);
     onMatrixAChange(newMatrix);
   };
   const handleMatrixBChange = (row: number, value: string) => {
     const newMatrixB = matrixB.map((cell, i) =>
       i === row ? parseFloat(value) || 0 : cell
     );
-    setMatrixBInner(newMatrixB);
     onMatrixBChange(newMatrixB);
   };
 
-  useEffect(() => {
-    setMatrixAInner(Array(size).fill(Array(size).fill(0)));
-    setMatrixBInner(Array(size).fill(0));
-  }, [size]);
-
   return (
-    <div className="overflow-x-auto max-w-[1000px] ">
+    <div className="overflow-x-auto max-w-[1000px] mb-2">
       <div className="px-2 flex gap-6">
         <div className="">
           {" "}
@@ -80,7 +61,7 @@ export const MatrixInput = ({
                 type="number"
                 value={cell}
                 onChange={(e) => handleMatrixBChange(i, e.target.value)}
-                className="p-2 border rounded text-center max-w-12"
+                className="p-2 border rounded text-center max-w-12 bg-orange-300"
               />
             ))}
           </div>
