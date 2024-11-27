@@ -5,3 +5,6 @@ export { MethodSelector } from "./method-selector";
 export { Container } from "./container";
 export { TableInverseMatrix } from "./table-inverse-matrix";
 export { DeterminantBlock } from "./determiant-block";
+export { TableGauss } from "./table-gauss";
+export { TableForwardGauss } from "./table-forward-gauss";
+export { TableBackwardGauss } from "./table-backward-gauss";

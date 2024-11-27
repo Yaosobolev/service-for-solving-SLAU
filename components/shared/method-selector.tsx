@@ -1,17 +1,10 @@
+import { methods } from "@/lib/constants";
+
 interface Props {
   onMethodChange: (method: string) => void;
 }
 
 export const MethodSelector: React.FC<Props> = ({ onMethodChange }) => {
-  const methods = [
-    "Гаусс",
-    "LU-разложение",
-    "Определитель",
-    "Метод трёхдиагональной прогонки",
-    "Зейдель",
-    "Обратная матрица",
-  ];
-
   return (
     <div className="mb-4 px-4 ">
       <label className="mr-2">Метод решения:</label>

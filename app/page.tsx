@@ -7,10 +7,12 @@ import {
   MatrixInput,
   MatrixSizeSelector,
   MethodSelector,
+  TableGauss,
   TableInverseMatrix,
 } from "@/components/shared";
 
 import { updateMatrixA, updateMatrixB } from "@/lib";
+import { methods } from "@/lib/constants";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -21,7 +23,7 @@ export default function Home() {
     Array(size).fill(Array(size).fill(0))
   );
   const [matrixB, setMatrixB] = useState<number[]>(Array(size).fill(0));
-  const [method, setMethod] = useState("");
+  const [method, setMethod] = useState(methods[0]);
   const handleClear = () => {
     setMatrixA(Array(size).fill(Array(size).fill(0)));
     setMatrixB(Array(size).fill(0));
@@ -31,16 +33,8 @@ export default function Home() {
     setMethod(method);
   };
   const handleSolve = () => {
-    switch (method) {
-      case "Определитель":
-        setIsOpenSolution(!isOpenSolution);
-
-        break;
-      case "Обратная матрица":
-        setIsOpenSolution(!isOpenSolution);
-        break;
-      default:
-        break;
+    if (methods.includes(method)) {
+      setIsOpenSolution(!isOpenSolution);
     }
   };
 
@@ -72,11 +66,18 @@ export default function Home() {
       {isOpenSolution && (
         <div>
           <h2 className="text-xl mt-8">Результат: {method}</h2>
-          {method === "Определитель" ? (
-            <DeterminantBlock matrix={matrixA} />
-          ) : (
-            <TableInverseMatrix matrix={matrixA} />
-          )}
+          {(() => {
+            switch (method) {
+              case "Определитель":
+                return <DeterminantBlock matrix={matrixA} />;
+              case "Обратная матрица":
+                return <TableInverseMatrix matrix={matrixA} />;
+              case "Гаусс":
+                return <TableGauss matrix={matrixA} vector={matrixB} />;
+              default:
+                return <div>Метод не найден</div>;
+            }
+          })()}
         </div>
       )}
     </Container>
