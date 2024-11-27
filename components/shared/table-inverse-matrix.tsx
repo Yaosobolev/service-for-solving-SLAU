@@ -14,6 +14,10 @@ interface Props {
 
 export const TableInverseMatrix: React.FC<Props> = ({ matrix }) => {
   const resultInverseMatrix = calcInverseMatrix(matrix);
+
+  if (typeof resultInverseMatrix === "string") {
+    return <div>{resultInverseMatrix}</div>;
+  }
   return (
     <>
       <Table>

@@ -6,12 +6,10 @@ const getMinor = (matrix: number[][], row: number, col: number) => {
     .map((row) => row.filter((_, j) => j !== col));
 };
 
-export const calcInverseMatrix = (matrix: number[][]): number[][] => {
+export const calcInverseMatrix = (matrix: number[][]): number[][] | string => {
   const det = determinant(matrix);
   if (det === 0) {
-    throw new Error(
-      "Матрица не имеет обратной, так как ее определитель равен 0."
-    );
+    return "Матрица не имеет обратной, так как ее определитель равен 0.";
   }
 
   const n = matrix.length;
