@@ -1,15 +1,17 @@
-export const MatrixInput = ({
-  matrixA,
-  matrixB,
-  size,
-  onMatrixAChange,
-  onMatrixBChange,
-}: {
+interface Props {
   matrixA: number[][];
   matrixB: number[];
   size: number;
   onMatrixAChange: (matrix: number[][]) => void;
   onMatrixBChange: (matrix: number[]) => void;
+}
+
+export const MatrixInput: React.FC<Props> = ({
+  matrixA,
+  matrixB,
+  size,
+  onMatrixAChange,
+  onMatrixBChange,
 }) => {
   const handleMatrixAChange = (row: number, col: number, value: string) => {
     const newMatrix = matrixA.map((rowArray, i) =>

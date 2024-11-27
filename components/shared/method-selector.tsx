@@ -1,8 +1,8 @@
-export const MethodSelector = ({
-  onMethodChange,
-}: {
+interface Props {
   onMethodChange: (method: string) => void;
-}) => {
+}
+
+export const MethodSelector: React.FC<Props> = ({ onMethodChange }) => {
   const methods = [
     "Гаусс",
     "LU-разложение",

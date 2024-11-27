@@ -1,9 +1,13 @@
-export const MatrixActions = ({
-  onClear,
-  onSolve,
-}: {
+interface Props {
+  isOpenSolution: boolean;
   onClear: () => void;
   onSolve: () => void;
+}
+
+export const MatrixActions: React.FC<Props> = ({
+  isOpenSolution,
+  onClear,
+  onSolve,
 }) => {
   return (
     <div className="mt-4 flex gap-4">
@@ -17,7 +21,7 @@ export const MatrixActions = ({
         onClick={onSolve}
         className="px-4 py-2 bg-green-500 text-white rounded"
       >
-        Решить
+        {isOpenSolution ? "Скрыть" : "Решить"}
       </button>
     </div>
   );

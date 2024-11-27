@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export const MatrixSizeSelector = ({
-  onSizeChange,
-}: {
+interface Props {
   onSizeChange: (size: number) => void;
-}) => {
+}
+
+export const MatrixSizeSelector: React.FC<Props> = ({ onSizeChange }) => {
   const [size, setSize] = useState(3);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

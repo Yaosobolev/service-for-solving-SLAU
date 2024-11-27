@@ -2,21 +2,26 @@
 
 import {
   Container,
+  DeterminantBlock,
   MatrixActions,
   MatrixInput,
   MatrixSizeSelector,
   MethodSelector,
+  TableInverseMatrix,
 } from "@/components/shared";
+
+import { updateMatrixA, updateMatrixB } from "@/lib";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [isOpenSolution, setIsOpenSolution] = useState<boolean>(false);
+
   const [size, setSize] = useState(3);
   const [matrixA, setMatrixA] = useState<number[][]>(
     Array(size).fill(Array(size).fill(0))
   );
   const [matrixB, setMatrixB] = useState<number[]>(Array(size).fill(0));
   const [method, setMethod] = useState("");
-  console.log(matrixA);
   const handleClear = () => {
     setMatrixA(Array(size).fill(Array(size).fill(0)));
     setMatrixB(Array(size).fill(0));
@@ -26,54 +31,22 @@ export default function Home() {
     setMethod(method);
   };
   const handleSolve = () => {
-    // Здесь вызовите соответствующий алгоритм для решения
-    console.log(
-      "Решение для метода:",
-      method,
-      "Матрица A:",
-      matrixA,
-      "Матрица B:",
-      matrixB
-    );
+    switch (method) {
+      case "Определитель":
+        setIsOpenSolution(!isOpenSolution);
+
+        break;
+      case "Обратная матрица":
+        setIsOpenSolution(!isOpenSolution);
+        break;
+      default:
+        break;
+    }
   };
 
   useEffect(() => {
-    const updateMatrixA = (matrix: number[][], defaultValue = 0) => {
-      // Создаем новую матрицу с нужным размером
-      const newMatrix = Array(size)
-        .fill(null)
-        .map((_, rowIndex) =>
-          Array(size)
-            .fill(null)
-            .map((_, colIndex) => {
-              // Если элемент существует в старой матрице, сохраняем его
-              if (
-                matrix[rowIndex] &&
-                matrix[rowIndex][colIndex] !== undefined
-              ) {
-                return matrix[rowIndex][colIndex];
-              }
-              // Иначе используем значение по умолчанию
-              return defaultValue;
-            })
-        );
-      return newMatrix;
-    };
-    const updateMatrixB = (matrix: number[], defaultValue = 0) => {
-      return Array(size)
-        .fill(null)
-        .map((_, index) => {
-          // Сохраняем существующее значение, если оно есть
-          if (matrix[index] !== undefined) {
-            return matrix[index];
-          }
-          // Иначе устанавливаем значение по умолчанию
-          return defaultValue;
-        });
-    };
-
-    setMatrixA(updateMatrixA(matrixA, 0));
-    setMatrixB(updateMatrixB(matrixB, 0));
+    setMatrixA(updateMatrixA(matrixA, 0, size));
+    setMatrixB(updateMatrixB(matrixB, 0, size));
     // setMatrixA(Array(size).fill(Array(size).fill(0)));
     // setMatrixB(Array(size).fill(0));
   }, [size]);
@@ -90,7 +63,22 @@ export default function Home() {
         onMatrixBChange={setMatrixB}
       />
       <MethodSelector onMethodChange={handleChangeMethod} />
-      <MatrixActions onClear={handleClear} onSolve={handleSolve} />
+      <MatrixActions
+        onClear={handleClear}
+        onSolve={handleSolve}
+        isOpenSolution={isOpenSolution}
+      />
+
+      {isOpenSolution && (
+        <div>
+          <h2 className="text-xl mt-8">Результат: {method}</h2>
+          {method === "Определитель" ? (
+            <DeterminantBlock matrix={matrixA} />
+          ) : (
+            <TableInverseMatrix matrix={matrixA} />
+          )}
+        </div>
+      )}
     </Container>
   );
 }
