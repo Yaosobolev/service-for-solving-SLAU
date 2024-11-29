@@ -8,3 +8,6 @@ export { DeterminantBlock } from "./determiant-block";
 export { TableGauss } from "./table-gauss";
 export { TableForwardGauss } from "./table-forward-gauss";
 export { TableBackwardGauss } from "./table-backward-gauss";
+export { TableLU } from "./table-lu";
+export { BlockLU } from "./block-lu";
+export { TableSolveLU } from "./table-solve-lu";

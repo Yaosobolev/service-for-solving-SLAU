@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  BlockLU,
   Container,
   DeterminantBlock,
   MatrixActions,
@@ -74,6 +75,8 @@ export default function Home() {
                 return <TableInverseMatrix matrix={matrixA} />;
               case "Гаусс":
                 return <TableGauss matrix={matrixA} vector={matrixB} />;
+              case "LU-разложение":
+                return <BlockLU matrix={matrixA} vector={matrixB} />;
               default:
                 return <div>Метод не найден</div>;
             }
