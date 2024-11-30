@@ -1,11 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui";
 
 interface Props {
   lUMatrix: number[][];
