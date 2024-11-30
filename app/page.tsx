@@ -1,88 +1,33 @@
-"use client";
-
-import {
-  BlockLU,
-  Container,
-  DeterminantBlock,
-  MatrixActions,
-  MatrixInput,
-  MatrixSizeSelector,
-  MethodSelector,
-  TableGauss,
-  TableInverseMatrix,
-} from "@/components/shared";
-
-import { updateMatrixA, updateMatrixB } from "@/lib";
-import { methods } from "@/lib/constants";
-import { useEffect, useState } from "react";
+import { Container } from "@/components/shared";
+import Link from "next/link";
 
 export default function Home() {
-  const [isOpenSolution, setIsOpenSolution] = useState<boolean>(false);
-
-  const [size, setSize] = useState(3);
-  const [matrixA, setMatrixA] = useState<number[][]>(
-    Array(size).fill(Array(size).fill(0))
-  );
-  const [matrixB, setMatrixB] = useState<number[]>(Array(size).fill(0));
-  const [method, setMethod] = useState(methods[0]);
-  const handleClear = () => {
-    setMatrixA(Array(size).fill(Array(size).fill(0)));
-    setMatrixB(Array(size).fill(0));
-  };
-
-  const handleChangeMethod = (method: string) => {
-    setMethod(method);
-  };
-  const handleSolve = () => {
-    if (methods.includes(method)) {
-      setIsOpenSolution(!isOpenSolution);
-    }
-  };
-
-  useEffect(() => {
-    setMatrixA(updateMatrixA(matrixA, 0, size));
-    setMatrixB(updateMatrixB(matrixB, 0, size));
-    // setMatrixA(Array(size).fill(Array(size).fill(0)));
-    // setMatrixB(Array(size).fill(0));
-  }, [size]);
-
   return (
-    <Container>
-      <h1 className="text-2xl font-bold mb-4">Решение систем уравнений</h1>
-      <MatrixSizeSelector onSizeChange={setSize} />
-      <MatrixInput
-        matrixA={matrixA}
-        matrixB={matrixB}
-        size={size}
-        onMatrixAChange={setMatrixA}
-        onMatrixBChange={setMatrixB}
-      />
-      <MethodSelector onMethodChange={handleChangeMethod} />
-      <MatrixActions
-        onClear={handleClear}
-        onSolve={handleSolve}
-        isOpenSolution={isOpenSolution}
-      />
-
-      {isOpenSolution && (
-        <div>
-          <h2 className="text-xl mt-8">Результат: {method}</h2>
-          {(() => {
-            switch (method) {
-              case "Определитель":
-                return <DeterminantBlock matrix={matrixA} />;
-              case "Обратная матрица":
-                return <TableInverseMatrix matrix={matrixA} />;
-              case "Гаусс":
-                return <TableGauss matrix={matrixA} vector={matrixB} />;
-              case "LU-разложение":
-                return <BlockLU matrix={matrixA} vector={matrixB} />;
-              default:
-                return <div>Метод не найден</div>;
-            }
-          })()}
-        </div>
-      )}
+    <Container className="flex flex-col items-center min-w-full justify-center min-h-screen bg-gradient-to-b from-blue-50 to-indigo-100 text-gray-800 px-6">
+      <div className="text-center max-w-2xl">
+        <h1 className="text-3xl md:text-5xl font-bold text-indigo-900 mb-6 tracking-wide">
+          Добро пожаловать на сервис
+        </h1>
+        {/* <p className="text-lg md:text-xl font-light text-gray-700 leading-relaxed mb-12">
+          Используйте наш сервис для решения уравнений методами скалярного
+          произведения, Рэлея и степенным методом.
+        </p> */}
+        <p className="text-lg md:text-xl font-mono  bg-gradient-to-b from-blue-50 to-indigo-100 text-gray-500 p-4 rounded-lg leading-relaxed mb-12 shadow-lg">
+          Используйте наш сервис для освоения метода Гаусса, LU-разложения,
+          Зейделя и метода трёхдиагональной прогонки, а также для нахождения
+          определителей и построения обратных матриц
+        </p>
+        {/* <p className="text-lg md:text-xl font-mono bg-gray-900 text-green-400 p-4 rounded-lg leading-relaxed mb-12 shadow-lg">
+          Используйте наш сервис для решения уравнений методами скалярного
+          произведения, Рэлея и степенным методом.
+        </p> */}
+        <Link
+          href="/equation"
+          className="px-8 py-3 bg-indigo-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition-transform transform hover:scale-105 active:scale-100 focus:outline-none focus:ring-4 focus:ring-indigo-300"
+        >
+          Перейти<span className="animate-none">!</span>
+        </Link>
+      </div>
     </Container>
   );
 }
