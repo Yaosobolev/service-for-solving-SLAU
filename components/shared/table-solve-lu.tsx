@@ -18,7 +18,9 @@ export const TableSolveLU: React.FC<Props> = ({ lUMatrix, title }) => {
                   {`x${index + 1}`}:
                 </TableCell>
                 <span className="text-sm">=</span>
-                <TableCell className="font-medium">{el}</TableCell>
+                <TableCell className="font-medium">
+                  {Number.isNaN(el) ? 0 : el}
+                </TableCell>
               </TableRow>
             );
           })}

@@ -33,7 +33,7 @@ export const TableForwardGauss: React.FC<Props> = ({ forwardElimination }) => {
               <TableRow key={index}>
                 {row.map((el, index) => (
                   <TableCell key={index} className="text-center">
-                    {el}
+                    {Number.isNaN(el) ? 0 : el}
                   </TableCell>
                 ))}
               </TableRow>

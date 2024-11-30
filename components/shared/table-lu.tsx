@@ -33,7 +33,7 @@ export const TableLU: React.FC<Props> = ({ lUMatrix, title }) => {
               <TableRow key={index}>
                 {el.map((el, index) => (
                   <TableCell key={index} className="text-center">
-                    {el}
+                    {Number.isNaN(el) ? 0 : el}
                   </TableCell>
                 ))}
               </TableRow>

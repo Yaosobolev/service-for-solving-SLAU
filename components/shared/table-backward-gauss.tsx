@@ -17,7 +17,9 @@ export const TableBackwardGauss: React.FC<Props> = ({
               <TableRow key={index} className="flex items-center">
                 <TableCell className="font-medium">x{index + 1}:</TableCell>
                 <span className="text-sm">=</span>
-                <TableCell className="font-medium">{el}</TableCell>
+                <TableCell className="font-medium">
+                  {Number.isNaN(el) ? 0 : el}
+                </TableCell>
               </TableRow>
             );
           })}
