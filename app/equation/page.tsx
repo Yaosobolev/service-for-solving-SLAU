@@ -10,6 +10,7 @@ import {
   MethodSelector,
   TableGauss,
   TableInverseMatrix,
+  TableSeidel,
   TableThreePointScalar,
 } from "@/components/shared";
 
@@ -82,6 +83,8 @@ export default function Home() {
                 return (
                   <TableThreePointScalar matrix={matrixA} vector={matrixB} />
                 );
+              case "Зейдель":
+                return <TableSeidel matrix={matrixA} vector={matrixB} />;
               default:
                 return <div>Метод не найден</div>;
             }

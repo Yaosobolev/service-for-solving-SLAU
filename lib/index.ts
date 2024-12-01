@@ -9,3 +9,7 @@ export { conditionsOfApplicabilityThreePointScalar } from "./conditions-of-appli
 export { tridiagonalTransformation } from "./tridiagonal-transformation";
 export { calcFastForward } from "./calc-fast-forward";
 export { calcFastBackward } from "./calc-fast-backward";
+export { checkAccuracySeidel } from "./check-accuracy-seidel";
+export { calcSeidel } from "./calc-seidel";
+export { iterationCalcSeidel } from "./iteration-calc-seidel";
+export { checkDiagonalDominance } from "./check-diagonal-dominance";

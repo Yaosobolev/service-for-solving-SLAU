@@ -15,3 +15,5 @@ export { TableThreePointScalar } from "./table-three-point-scalar";
 export { ThreePointScalarFulfillmentCondition } from "./three-point-scalar-fulfillment-condition";
 export { TableThreePointScalarFastForward } from "./table-three-point-scalar-fast-forward";
 export { TableThreePointScalarFastBackward } from "./table-three-point-scalar-fast-backward";
+export { TableSeidel } from "./table-seidel";
+export { HeaderSeidel } from "./header-seidel";
