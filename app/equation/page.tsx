@@ -10,6 +10,7 @@ import {
   MethodSelector,
   TableGauss,
   TableInverseMatrix,
+  TableThreePointScalar,
 } from "@/components/shared";
 
 import { updateMatrixA, updateMatrixB } from "@/lib";
@@ -77,6 +78,10 @@ export default function Home() {
                 return <TableGauss matrix={matrixA} vector={matrixB} />;
               case "LU-разложение":
                 return <BlockLU matrix={matrixA} vector={matrixB} />;
+              case "Метод трёхдиагональной прогонки":
+                return (
+                  <TableThreePointScalar matrix={matrixA} vector={matrixB} />
+                );
               default:
                 return <div>Метод не найден</div>;
             }

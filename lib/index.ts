@@ -5,3 +5,7 @@ export { updateMatrixA } from "./update-matrix-a";
 export { gaussElimination } from "./gauss-elimination";
 export { luDecomposition } from "./lu-decomposition";
 export { solveLU } from "./solve-lu";
+export { conditionsOfApplicabilityThreePointScalar } from "./conditions-of-applicability-three-point-scalar";
+export { tridiagonalTransformation } from "./tridiagonal-transformation";
+export { calcFastForward } from "./calc-fast-forward";
+export { calcFastBackward } from "./calc-fast-backward";

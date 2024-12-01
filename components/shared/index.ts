@@ -11,3 +11,7 @@ export { TableBackwardGauss } from "./table-backward-gauss";
 export { TableLU } from "./table-lu";
 export { BlockLU } from "./block-lu";
 export { TableSolveLU } from "./table-solve-lu";
+export { TableThreePointScalar } from "./table-three-point-scalar";
+export { ThreePointScalarFulfillmentCondition } from "./three-point-scalar-fulfillment-condition";
+export { TableThreePointScalarFastForward } from "./table-three-point-scalar-fast-forward";
+export { TableThreePointScalarFastBackward } from "./table-three-point-scalar-fast-backward";
