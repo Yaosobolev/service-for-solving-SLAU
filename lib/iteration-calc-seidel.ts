@@ -43,7 +43,7 @@ export const iterationCalcSeidel = (
     ));
     maxAbsoluteValue.push(maxAbsolute);
     if (index === 1000)
-      return "Матрица не удовлетворяет необходимому условиюсходимости(все корни уравнения должны быть  по модулю меньше 1)";
+      return "Матрица не удовлетворяет условию сходимости либо слишком строгая точность";
   }
 
   return { betweenValues, index, maxAbsoluteValue };
