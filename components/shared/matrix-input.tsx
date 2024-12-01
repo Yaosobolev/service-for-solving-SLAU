@@ -45,7 +45,7 @@ export const MatrixInput: React.FC<Props> = ({
                   type="number"
                   value={cell}
                   onChange={(e) => handleMatrixAChange(i, j, e.target.value)}
-                  className="p-2 border rounded text-center max-w-12"
+                  className="p-2 border rounded text-center max-w-20"
                 />
               ))
             )}
@@ -63,7 +63,7 @@ export const MatrixInput: React.FC<Props> = ({
                 type="number"
                 value={cell}
                 onChange={(e) => handleMatrixBChange(i, e.target.value)}
-                className="p-2 border rounded text-center max-w-12 bg-orange-300"
+                className="p-2 border rounded text-center max-w-20 bg-orange-300"
               />
             ))}
           </div>
